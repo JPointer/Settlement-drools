@@ -1,0 +1,7 @@
+package rules;
+dialect  "mvel"
+
+rule "Beer"
+    when
+    then
+end

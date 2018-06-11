@@ -1,0 +1,35 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.main.Time;
+import com.pointer.main.Gold;
+import com.pointer.main.Settlement;
+import com.pointer.model.Happyness;
+
+rule "Taxes"
+salience 0
+     when
+        $h : Happyness()
+        $t : Time()
+        $g : Gold()
+        $s : Settlement(getGold() == $g && getHappyness() == $h)
+     then
+        int n = $s.getNumberOfWorkers();
+        double taxRate = $g.getTaxRate();
+
+        int happy = 0;
+
+        if(taxRate == 1) {
+            happy = 0;
+        }
+        if(taxRate == 0.75) {
+            happy = 3;
+        }
+        if(taxRate == 1.25) {
+            happy = -8;
+        }
+
+        System.out.println("POZIOM ZADOWOLENIA" + $h.getHappyLevel());
+        modify($h){ addHappy(happy)}
+        modify($g){addMoney(n*taxRate)}
+end

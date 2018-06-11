@@ -1,0 +1,12 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.main.Time
+
+rule "update time"
+salience 0
+   when
+        $time : Time()
+    then
+        System.out.println($time.getDay());
+end

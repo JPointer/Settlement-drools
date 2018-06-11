@@ -1,0 +1,49 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.model.buildings.Orchard;
+import com.pointer.model.buildings.Cowshed;
+import com.pointer.model.buildings.Butchery;
+import com.pointer.model.food.Apple
+import com.pointer.main.Time
+import java.util.concurrent.TimeUnit;
+
+
+rule "Produce Apple"
+salience 0
+     when
+        $t : Time()
+        $o : Orchard(($t.getDay() % day) == 0)
+     then
+        int n = $o.howManyWorkers();
+        if(n == 1) {
+            $o.addApple(2); }
+        if(n == 2){
+            $o.addApple(4); }
+end
+
+rule "Produce Meet"
+salience 0
+     when
+        $t : Time()
+        $b : Butchery(($t.getDay() % day) == 0)
+     then
+        int n = $b.howManyWorkers();
+        if(n == 1) {
+            $b.addMeet(1); }
+        if(n == 2){
+            $b.addMeet(3); }
+end
+
+rule "Produce Cheese"
+salience 0
+     when
+        $t : Time()
+        $c : Cowshed(($t.getDay() % day) == 0)
+     then
+        int n = $c.howManyWorkers();
+        if(n == 1) {
+            $c.addCheese(2); }
+        if(n == 2){
+            $c.addCheese(5); }
+end

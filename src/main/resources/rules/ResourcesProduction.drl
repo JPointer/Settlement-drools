@@ -1,0 +1,46 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.model.buildings.Ironworks;
+import com.pointer.model.buildings.Sawmill;
+import com.pointer.model.buildings.Quarry;
+import com.pointer.main.Time;
+
+rule "Produce Stone"
+salience 0
+     when
+        $t : Time()
+        $i : Ironworks(($t.getDay() % day) == 0)
+     then
+        int n = $i.howManyWorkers();
+        if(n == 1) {
+            $i.addIron(1); }
+        if(n == 2){
+            $i.addIron(2); }
+end
+
+rule "Produce Iron"
+salience 0
+     when
+        $t : Time()
+        $s : Sawmill(($t.getDay() % day) == 0)
+     then
+        int n = $s.howManyWorkers();
+        if(n == 1) {
+            $s.addWood(5); }
+        if(n == 2){
+            $s.addWood(15); }
+end
+
+rule "Produce Wood"
+salience 0
+     when
+        $t : Time()
+        $q : Quarry(($t.getDay() % day) == 0)
+     then
+        int n = $q.howManyWorkers();
+        if(n == 1) {
+            $q.addStone(8); }
+        if(n == 2){
+            $q.addStone(20); }
+end
