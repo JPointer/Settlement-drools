@@ -4,7 +4,7 @@ import com.pointer.model.avatars.Worker;
 
 import java.util.ArrayList;
 
-public class House extends Building {
+public class House  {
 
     private int capacity;
     ArrayList<Worker> workers = new ArrayList<>();

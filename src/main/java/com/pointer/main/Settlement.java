@@ -10,10 +10,19 @@ public class Settlement {
     private Granary granary;
     private Gold gold;
 
-    public Settlement(int numberOfWorkers, Granary granary, Happyness happyness, Gold gold) {
+    public void setNumberOfWorkers(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
+    }
+
+    public void setHappyness(Happyness happyness) {
         this.happyness = happyness;
+    }
+
+    public void setGranary(Granary granary) {
         this.granary = granary;
+    }
+
+    public void setGold(Gold gold) {
         this.gold = gold;
     }
 

@@ -6,24 +6,24 @@ import com.pointer.model.stock.Wood;
 
 import java.util.ArrayList;
 
-public class Warehouse extends Building {
+public class Warehouse {
 
-    private ArrayList<Wood> wood = new ArrayList<>();
-    private ArrayList<Iron> iron =  new ArrayList<>();
-    private ArrayList<Stone> stone = new ArrayList<>();
+    private int wood =  0;
+    private int iron =  0;
+    private int stone = 0;
 
     public void addWood() {
-        wood.add(new Wood());
-        System.out.println("WOOD" + wood.size());
+        wood += 1;
+        System.out.println("WOOD" + wood);
     }
 
     public void addStone() {
-        stone.add(new Stone());
-        System.out.println("STONE" + stone.size());
+        stone += 1;
+        System.out.println("STONE" + stone);
     }
 
     public void addIron() {
-        iron.add(new Iron());
-        System.out.println("IRON" + iron.size());
+        iron += 1;
+        System.out.println("IRON" + iron);
     }
 }

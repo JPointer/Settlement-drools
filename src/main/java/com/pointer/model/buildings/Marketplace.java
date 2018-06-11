@@ -1,5 +1,11 @@
 package com.pointer.model.buildings;
 
-public class Marketplace extends Building {
+import com.pointer.model.PriceList;
 
+public class Marketplace {
+    private PriceList priceList;
+
+    public void setPriceList(PriceList priceList) {
+        this.priceList = priceList;
+    }
 }

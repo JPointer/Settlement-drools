@@ -1,0 +1,34 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.model.buildings.Church;
+import com.pointer.model.avatars.Priest;
+import com.pointer.main.Time;
+import com.pointer.model.Bless;
+import com.pointer.model.Happyness;
+
+rule "Church"
+    when
+        $ch : Church()
+    then
+        //System.out.println("New Priest was produced");
+        insert(new Priest(5))
+end
+
+rule "Bless"
+    when
+        $t : Time()
+        $o : Priest(($t.getDay() % day) == 0)
+    then
+        //System.out.println("New Bless was produced");
+        insert(new Bless())
+end
+
+rule "Happy grows because of blessing"
+    when
+        $h : Happyness()
+        $b : Bless()
+    then
+         //System.out.println("Happy BONUS because of bressing");
+         modify($h){ addHappy(1)}
+end

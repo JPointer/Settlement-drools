@@ -1,0 +1,37 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.model.buildings.Marketplace
+import com.pointer.model.PriceList;
+
+rule "Marketplace"
+    when
+        $m : Marketplace()
+    then
+        PriceList priceList = new PriceList();
+
+        priceList.setBeerPurchasePrice(20);
+        priceList.setApplePurchasePrice(20);
+        priceList.setCheesePurchasePrice(20);
+        priceList.setMeetPurchasePrice(20);
+        priceList.setArmourPurchasePrice(20);
+        priceList.setIronPurchasePrice(20);
+        priceList.setStonePurchasePrice(20);
+        priceList.setSwoordPurchasePrice(20);
+        priceList.setWoodPurchasePrice(20);
+
+        priceList.setBeerSellPrice(10);
+        priceList.setAppleSellPrice(10);
+        priceList.setCheeseSellPrice(10);
+        priceList.setMeetSellPrice(10);
+        priceList.setArmourSellPrice(10);
+        priceList.setIronSellPrice(10);
+        priceList.setStoneSellPrice(10);
+        priceList.setSwoordSellPrice(10);
+        priceList.setWoodSellPrice(10);
+
+        System.out.println("NEW PriceList was added");
+
+        $m.setPriceList(priceList);
+        insert(priceList);
+end

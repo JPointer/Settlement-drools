@@ -1,7 +1,7 @@
 package com.pointer.model.buildings;
 
 /*sad*/
-public class Orchard extends Building {
+public class Orchard /*extends Building */{
 
     private Granary granary;
     private int day;

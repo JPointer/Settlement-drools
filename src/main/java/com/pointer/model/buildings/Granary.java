@@ -1,13 +1,7 @@
 package com.pointer.model.buildings;
 
-import com.pointer.model.food.Apple;
-import com.pointer.model.food.Cheese;
-import com.pointer.model.food.Meet;
-
-import java.util.ArrayList;
-
 /*Spichlerz*/
-public class Granary extends Building {
+public class Granary {
 
     private double apples = 0.0;
     private double cheese = 0.0;

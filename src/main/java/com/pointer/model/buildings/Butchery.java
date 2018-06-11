@@ -1,28 +1,19 @@
 package com.pointer.model.buildings;
 
-public class Butchery {
+public class Butchery extends Building{
 
     private Granary granary;
-    private int day;
     private int workers;
 
     public Butchery(Granary granary, int day, int workers) {
+        super(day);
         this.granary = granary;
-        this.day = day;
         this.workers = workers;
     }
 
     public void addMeet(int n) {
         while(n-- != 0)
             granary.addMeet();
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
     }
 
     public int howManyWorkers() {

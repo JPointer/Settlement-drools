@@ -1,0 +1,7 @@
+package rules;
+dialect  "mvel"
+//sprzedaj surowce i rób hajs
+rule "Stock"
+    when
+    then
+end

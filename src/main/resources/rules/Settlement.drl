@@ -1,0 +1,61 @@
+package rules;
+dialect  "mvel"
+
+import com.pointer.main.Settlement;
+import com.pointer.model.buildings.Granary
+import com.pointer.model.buildings.Warehouse
+import com.pointer.model.buildings.Marketplace
+import com.pointer.model.buildings.Orchard
+import com.pointer.model.buildings.Butchery
+import com.pointer.model.buildings.Cowshed
+import com.pointer.model.buildings.Sawmill
+import com.pointer.model.buildings.Quarry
+import com.pointer.model.buildings.Ironworks
+import com.pointer.model.buildings.Church
+import com.pointer.main.Gold
+import com.pointer.model.Happyness;
+
+rule "Settlement"
+no-loop
+    when
+        $s : Settlement()
+    then
+        Granary granary = new Granary(0.75);
+        Warehouse warehouse = new Warehouse();
+        Marketplace marketplace = new Marketplace();
+
+        Orchard orchard1 = new Orchard(granary, 3, 2);
+        Butchery butchery1 =  new Butchery(granary, 4, 1);
+        Cowshed cowshed1 = new Cowshed(granary, 3, 1);
+
+        Sawmill sawmill = new Sawmill(warehouse, 3, 1);
+        Quarry quarry = new Quarry(warehouse, 3, 1);
+        Ironworks ironworks = new Ironworks(warehouse, 3, 1);
+
+        Church church = new Church();
+
+        Gold gold = new Gold();
+        Happyness happyness = new Happyness(100);
+
+        $s.setGold(gold);
+        $s.setGranary(granary);
+        $s.setHappyness(happyness);
+        $s.setNumberOfWorkers(100);
+        System.out.println("SETTLEMNET CREATED");
+        update($s);
+
+        insert(marketplace);
+        insert(church);
+        insert(granary);
+        insert(gold);
+
+        insert(happyness);
+
+        insert(orchard1);
+        insert(butchery1);
+        insert(cowshed1);
+
+        insert(sawmill);
+        insert(quarry);
+        insert(ironworks);
+end
