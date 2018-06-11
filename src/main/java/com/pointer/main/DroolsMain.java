@@ -41,6 +41,7 @@ public class DroolsMain {
 
         Time time = new Time(0);
 
+        ksession.insert(granary);
         ksession.insert(gold);
         ksession.insert(settlement);
         ksession.insert(happyness);

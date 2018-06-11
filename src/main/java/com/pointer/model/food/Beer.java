@@ -2,9 +2,9 @@ package com.pointer.model.food;
 
 import com.pointer.model.Product;
 
-public class Cheese extends Product {
+public class Beer extends Product {
 
-    public Cheese(double purchasePrice, double sellPrice) {
+    public Beer(double purchasePrice, double sellPrice) {
         super(purchasePrice, sellPrice);
     }
 }

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 /*Spichlerz*/
 public class Granary extends Building {
 
-    private ArrayList<Apple> apples = new ArrayList<>();
-    private ArrayList<Cheese> cheese =  new ArrayList<>();
-    private ArrayList<Meet> meet = new ArrayList<>();
+    private double apples = 0.0;
+    private double cheese = 0.0;
+    private double meet =0.0;
 
     private double portionSize = 1;
 
@@ -24,18 +24,35 @@ public class Granary extends Building {
     }
 
     public void addApple() {
-        apples.add(new Apple());
-        System.out.println("APPLE" + apples.size());
+        apples += 1;
+        System.out.println("APPLE" + apples);
     }
 
     public void addCheese() {
-        cheese.add(new Cheese());
-        System.out.println("CHEESE" + apples.size());
+        cheese += 1;
+        System.out.println("CHEESE" + cheese);
     }
 
     public void addMeet() {
-        meet.add(new Meet());
-        System.out.println("MEET" + meet.size());
+        meet += 1;
+        System.out.println("MEET" + meet);
     }
 
+    public void eatPortion(double a, double ch, double m) {
+            apples -= a;
+            cheese -= ch;
+            meet -= m;
+    }
+
+    public double getApples() {
+        return apples;
+    }
+
+    public double getCheese() {
+        return cheese;
+    }
+
+    public double getMeet() {
+        return meet;
+    }
 }

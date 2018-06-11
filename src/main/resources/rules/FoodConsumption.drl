@@ -4,26 +4,63 @@ dialect  "mvel"
 import com.pointer.main.Settlement;
 import com.pointer.main.Time;
 import com.pointer.model.Happyness;
+import com.pointer.model.buildings.Granary;
 
 rule "FoodConsumption"
      when
         $h : Happyness()
         $t : Time()
-        $o : Settlement(getHappyness() == $h)
+        $g : Granary()
+        $o : Settlement(getHappyness() == $h && getGranary() == $g)
      then
         int n = $o.getNumberOfWorkers();
         double portionSize = $o.getGranary().getPortionSize();
+
         int happy = 0;
 
+        double apples = $g.getApples();
+        double cheese = $g.getCheese();
+        double meet = $g.getMeet();
+
+        double a = 0;
+        double ch =0;
+        double m = 0;
+
         if(portionSize == 1) {
-            happy = 0;
+            happy += 0;
+            if(n * 0.1 > apples) {
+                a += (n * 0.1);
+                happy++;
+            }
+            if(n * 0.05 > cheese) {
+                ch += (n * 0.05);
+                happy++;
+            }
+            if(n * 0.01 > meet) {
+                m += (n * 0.01);
+            }
+
         }
         if(portionSize == 0.75) {
-            happy = -5;
+            happy += -5;
+            if(n * 0.1 > apples) {
+                a += (n * 0.1 * portionSize);
+                happy++;
+            }
+            if(n * 0.05 > cheese) {
+                ch += (n * 0.05 * portionSize);
+                happy++;
+            }
+            if(n * 0.01 > meet * portionSize) {
+                m += (n * 0.01);
+            }
         }
         if(portionSize == 1.25) {
-            happy = 6;
+            happy += 6;
+            //TODO...
         }
+
+        modify($g){eatPortion(a, ch, m)}
         System.out.println("PORCJA" + portionSize + " POZIOM ZADOWOLENIA" + $h.getHappyLevel());
         modify($h){ addHappy(happy)}
 

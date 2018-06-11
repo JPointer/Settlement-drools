@@ -1,4 +1,10 @@
 package com.pointer.model.food;
 
-public class Apple {
+import com.pointer.model.Product;
+
+public class Apple extends Product{
+
+    public Apple(double purchasePrice, double sellPrice) {
+        super(purchasePrice, sellPrice);
+    }
 }
